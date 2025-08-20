@@ -31,7 +31,6 @@ export default function Projects() {
         { name: 'Node.js', img: 'https://img.icons8.com/fluency/512/node-js.png' },
         { name: 'Express', img: 'https://img.icons8.com/fluency/512/express-js.png' },
         { name: 'MongoDB', img: 'https://img.icons8.com/color/512/mongodb.png' },
-        
       ],
       github: 'https://github.com/tusharjaiswal28/puzzle.git',
       live: 'https://magnificent-marigold-2b20d2.netlify.app/',
@@ -39,7 +38,7 @@ export default function Projects() {
     },
     {
       title: 'Anti-Resume Job Platform',
-      desc: 'A hiring platform that replaces traditional resumes with skill-based challenges and ensuring fair, bias-free recruitment. Features blind initial screening, transparent salary data, and post-hire feedback to continuously improve matches.',
+      desc: 'A hiring platform that replaces traditional resumes with skill-based challenges and ensuring fair, bias-free recruitment.',
       tech: [
         { name: 'HTML', img: 'https://img.icons8.com/color/100/html-5--v1.png' },
         { name: 'CSS', img: 'https://img.icons8.com/fluency/512/css3.png' },
@@ -57,44 +56,26 @@ export default function Projects() {
       {projects.map((p, index) => (
         <div
           key={p.title}
-          className="project-row"
-          style={{
-            display: 'flex',
-            flexDirection: index % 2 === 0 ? 'row' : 'row-reverse',
-            alignItems: 'center',
-            gap: '2rem',
-            marginBottom: '3rem',
-            flexWrap: 'wrap'
-          }}
+          className={`project-row ${index % 2 !== 0 ? 'reverse' : ''}`}
           data-reveal="fade-up"
         >
           {/* Image */}
-          <div style={{ flex: '1 1 45%' }}>
-            <img
-              src={p.image}
-              alt={p.title}
-              style={{ width: '100%', borderRadius: '8px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }}
-            />
+          <div className="project-image">
+            <img src={p.image} alt={p.title} />
           </div>
 
           {/* Description */}
-          <div style={{ flex: '1 1 45%' }}>
+          <div className="project-content">
             <h3>{p.title}</h3>
-            <div style={{ display: 'flex', gap: '8px', margin: '8px 0' }}>
+            <div className="tech-icons">
               {p.tech.map((t) => (
-                <img
-                  key={t.name}
-                  src={t.img}
-                  alt={t.name}
-                  title={t.name}
-                  style={{ width: '35px', height: '35px' }}
-                />
+                <img key={t.name} src={t.img} alt={t.name} title={t.name} />
               ))}
             </div>
             <p>{p.desc}</p>
-            <div style={{ marginTop: '12px' }}>
+            <div className="project-actions">
               <a className="btn primary" href={p.live} target="_blank" rel="noreferrer">Check it out!</a>
-              <a className="btn" href={p.github} target="_blank" rel="noreferrer" style={{ marginLeft: '8px' }}>GitHub Link</a>
+              <a className="btn" href={p.github} target="_blank" rel="noreferrer">GitHub Link</a>
             </div>
           </div>
         </div>

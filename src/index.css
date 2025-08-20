@@ -67,10 +67,11 @@ h4 {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 50;
-  background: rgba(255, 248, 243, .7);
+  z-index: 1000;
+  background: rgba(255, 248, 243, 0.9);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .nav-inner {
@@ -138,13 +139,30 @@ h4 {
 }
 
 .mobile-menu {
-  display: none;
+  position: fixed;
+  top: 70px; /* just below navbar */
+  left: 0;
+  width: 100%;
+  background: var(--background-color);
   flex-direction: column;
-  gap: 12px;
-  padding: 12px 0 20px;
-  border-bottom: 1px solid var(--border-color);
+  gap: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  display: flex;
+  animation: slideDown 0.3s ease;
 }
 
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .hero {
   padding: 90px 22px 40px;
   /* max-width: var(--container-width); */
@@ -262,6 +280,69 @@ section {
   margin-bottom: 8px;
 }
 
+.project-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.project-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.project-image {
+  flex: 1 1 45%;
+}
+
+.project-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.project-content {
+  flex: 1 1 45%;
+}
+
+.project-content h3 {
+  margin-bottom: 10px;
+}
+
+.tech-icons {
+  display: flex;
+  gap: 10px;
+  margin: 8px 0 12px;
+}
+
+.tech-icons img {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+}
+
+/* ✅ Responsive fix */
+@media (max-width: 768px) {
+  .project-row,
+  .project-row.reverse {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .project-content {
+    flex: 1 1 100%;
+  }
+
+  .project-image {
+    flex: 1 1 100%;
+  }
+
+  .tech-icons {
+    justify-content: center;
+  }
+}
+
 
 .project-meta {
   font-size: 14px;
@@ -347,6 +428,7 @@ section {
 
   .mobile-menu {
     display: flex;
+    text-align: center;
   }
 }
 
